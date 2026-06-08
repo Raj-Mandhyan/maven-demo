@@ -1,4 +1,3 @@
-// Added this for Job 3(MavenBuildDemo)
 pipeline {
     agent any
 
@@ -22,7 +21,6 @@ pipeline {
             }
         }
 
-        // Added this extra stage in Job 4(MavenPipelineDemo)
         stage('Package') {
             steps {
                 bat 'mvn package'
@@ -31,12 +29,12 @@ pipeline {
     }
 
     post {
-        success {
-            echo 'Build Successful'
-        }
 
-        failure {
-            echo 'Build Failed'
+        success {
+
+            archiveArtifacts artifacts: 'target/*.jar'
+
+            echo 'Artifact Archived Successfully'
         }
     }
 }
