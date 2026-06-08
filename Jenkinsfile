@@ -1,3 +1,4 @@
+// Added this in Job 4
 pipeline {
     agent any
 
@@ -5,19 +6,26 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Fetching Source Code'
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                bat 'mvn compile'
             }
         }
 
         stage('Test') {
             steps {
                 bat 'mvn test'
+            }
+        }
+
+        // Added this extra stage in Job 5
+        stage('Package') {
+            steps {
+                bat 'mvn package'
             }
         }
     }
