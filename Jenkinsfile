@@ -33,6 +33,7 @@ pipeline {
             }
         }
 
+        
         stage('Docker Push') {
             steps {
                 withCredentials([
@@ -47,8 +48,8 @@ pipeline {
                     bat "docker tag maven-demo:latest rajmandhyan/maven-demo:%BUILD_NUMBER%"
                     bat "docker push rajmandhyan/maven-demo:%BUILD_NUMBER%"
 
-                    bat "docker tag maven-demo:latest rajmandhyan/maven-demo:latest"
-                    bat "docker push rajmandhyan/maven-demo:latest"
+                    // bat "docker tag maven-demo:latest rajmandhyan/maven-demo:latest"
+                    // bat "docker push rajmandhyan/maven-demo:latest"
                 }
             }
         }
