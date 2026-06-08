@@ -27,6 +27,12 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t maven-demo:latest .'
+            }
+        }
+        
         stage('Deploy') {
             steps {
                 bat 'dir target'
