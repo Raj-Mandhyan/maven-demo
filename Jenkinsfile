@@ -42,9 +42,13 @@ pipeline {
                         passwordVariable: 'DOCKER_PASS'
                     )
                 ]) {
-                bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
-                bat 'docker tag maven-demo:latest rajmandhyan/maven-demo:latest'
-                bat 'docker push rajmandhyan/maven-demo:latest'
+                    bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+
+                    bat "docker tag maven-demo:latest rajmandhyan/maven-demo:%BUILD_NUMBER%"
+                    bat "docker push rajmandhyan/maven-demo:%BUILD_NUMBER%"
+
+                    bat "docker tag maven-demo:latest rajmandhyan/maven-demo:latest"
+                    bat "docker push rajmandhyan/maven-demo:latest"
                 }
             }
         }
