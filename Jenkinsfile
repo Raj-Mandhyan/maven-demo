@@ -32,6 +32,12 @@ pipeline {
                 bat 'docker build -t maven-demo:latest .'
             }
         }
+
+        stage('Docker Run') {
+            steps {
+                bat 'docker run --rm maven-demo:latest'
+            }
+        }
         
         stage('Deploy') {
             steps {
