@@ -26,14 +26,17 @@ pipeline {
                 bat 'mvn package'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                bat 'dir target'
+            }
+        }
     }
 
     post {
-
         success {
-
             archiveArtifacts artifacts: 'target/*.jar'
-
             echo 'Artifact Archived Successfully'
         }
     }
