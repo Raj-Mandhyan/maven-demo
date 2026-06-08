@@ -33,6 +33,22 @@ pipeline {
             }
         }
 
+        stage('Docker Push') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+                bat 'docker tag maven-demo:latest rajmandhyan/maven-demo:latest'
+                bat 'docker push rajmandhyan/maven-demo:latest'
+                }
+            }
+        }
+
         stage('Docker Run') {
             steps {
                 bat 'docker run --rm maven-demo:latest'
