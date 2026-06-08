@@ -23,6 +23,7 @@ pipeline {
         }
 
         // Added this extra stage in Job 5
+        // And checking again
         stage('Package') {
             steps {
                 bat 'mvn package'
