@@ -1,4 +1,4 @@
-// Added this in Job 4
+// Added this for Job 3(MavenBuildDemo)
 pipeline {
     agent any
 
@@ -22,8 +22,7 @@ pipeline {
             }
         }
 
-        // Added this extra stage in Job 5
-        // And checking again
+        // Added this extra stage in Job 4(MavenPipelineDemo)
         stage('Package') {
             steps {
                 bat 'mvn package'
